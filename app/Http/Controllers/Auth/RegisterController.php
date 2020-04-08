@@ -55,9 +55,9 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phonenumber' => ['required', 'string', 'max:15', 'unique:users'],
+            'phonenumber' => ['required', 'string', 'max:15', 'unique:users'], // optional
             'gender' => ['required', 'string', 'max:5'],
-            'birth_date' => ['required', 'string', 'max:10'],
+            'birth_date' => ['required', 'string', 'max:10'],  // optional - date
         ]);
     }
 
@@ -85,6 +85,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
         );
     
+        // WRONG PLACE TO SEND MAIL
         // send email with the template
         Mail::send('mails.exmpl', $email_data, function ($message) use ($email_data) {
             $message->to($email_data['email'], $email_data['firstname'])

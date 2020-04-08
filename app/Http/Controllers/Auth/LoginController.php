@@ -47,7 +47,7 @@ class LoginController extends Controller
      */
     protected function credentials(Request $request)
     {
-        if(is_numeric($request->get('email'))){
+        if(is_numeric($request->get('email'))){  // what if I registered with this format ? +201147919933 ?
         return ['phonenumber'=>$request->get('email'),'password'=>$request->get('password')];
         }
         return $request->only($this->username(), 'password');
