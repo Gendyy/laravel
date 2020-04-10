@@ -23,6 +23,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+    public const USERHOME = 'user/home';
+    public const ADMINHOME = 'admin/admin';
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -83,7 +85,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapUserRoutes()
     {
         Route::prefix('user')
-             ->middleware('api')
+             ->middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/user.php'));
     }
@@ -91,8 +93,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminRoutes()
     {
         Route::prefix('admin')
-             ->middleware('api')
-             ->namespace('App\Http\Controllers\Admin')
+             ->middleware('web')
+             ->namespace($this->namespace)
              ->group(base_path('routes/admin.php'));
     }
 }
