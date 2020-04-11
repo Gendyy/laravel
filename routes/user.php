@@ -23,3 +23,6 @@ Route::get('/testmails', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');
+
+Route::get('change-password', 'User\ChangeUserPasswordController@index');
+Route::post('change-password', 'User\ChangeUserPasswordController@store')->name('change.password');
