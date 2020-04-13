@@ -46,11 +46,21 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    protected function credentials(Request $request)
+    // protected function credentials(Request $request)
+    // {
+    //     if(is_numeric($request->get('email'))){
+    //     return ['phonenumber'=>$request->get('email'),'password'=>$request->get('password')];
+    //     }
+    //     return $request->only($this->username(), 'password');
+    // }
+
+    public function username()
     {
-        if(is_numeric($request->get('email'))){
-        return ['phonenumber'=>$request->get('email'),'password'=>$request->get('password')];
-        }
-        return $request->only($this->username(), 'password');
+         $value = request()->input('identify');
+    
+         $field = filter_var($value, FILTER_VALIDATE_EMAIL) ? 'email' : 'phonenumber';
+         request()->merge([$field => $value]);
+    
+         return $field;
     }
 }

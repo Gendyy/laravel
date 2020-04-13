@@ -7,22 +7,25 @@ Route::get('/', function () {
 
 
 
-use App\Mail\MailtrapExample;
-use Illuminate\Support\Facades\Mail;
+// use App\Mail\MailtrapExample;
+// use Illuminate\Support\Facades\Mail;
 
-Route::get('/testmails', function () {
+// Route::get('/testmails', function () {
 
-    $data = ['message' => 'This is a test!'];
+//     $data = ['message' => 'This is a test!'];
 
-    Mail::to('osamahmuhammed@gmail.com')->send(new MailtrapExample($data));
+//     Mail::to('osamahmuhammed@gmail.com')->send(new MailtrapExample($data));
 
 
-});
+// });
 
 
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');
 
+Route::get('/home', 'User\UserCounterController@index')->name('count.users');
+
+
 Route::get('change-password', 'User\ChangeUserPasswordController@index');
-Route::post('change-password', 'User\ChangeUserPasswordController@store')->name('change.password');
+Route::post('change-password', 'User\ChangeUserPasswordController@store')->name('change.userpassword');

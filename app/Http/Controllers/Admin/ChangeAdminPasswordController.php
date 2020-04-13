@@ -27,7 +27,7 @@ class ChangeAdminPasswordController extends Controller
      */
     public function index()
     {
-        return view('changePassword');
+        return view('admin.adminChangePassword');
     } 
     
     /**
@@ -45,7 +45,7 @@ class ChangeAdminPasswordController extends Controller
     
         Admin::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
     
-        return redirect()->to('admin')->with('message','Password changed successfully !');
+        return redirect()->to('admin/home')->with('message','Password changed successfully !');
 
     }
 }

@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Hello From Mail Trap</p>
+    Hey
 </body>
 </html>

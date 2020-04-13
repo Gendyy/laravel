@@ -14,9 +14,9 @@ class AddMultipleColumnToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('phonenumber')->unique();
-            $table->string('gender');
-            $table->string('birth_date');
+            $table->string('phonenumber', '255')->unique();
+            $table->enum('gender', ['Male', 'Female',]);
+            $table->date('birth_date');
         });
     }
 
