@@ -12,7 +12,7 @@ class AdminCounterController extends Controller
     {
 
         $adminsData = Admin::all()->count();
-        return view('admin.adminHome', compact('adminsData'));
+        return view('admin.layouts.adminHome', compact('adminsData'));
 
     }
 }

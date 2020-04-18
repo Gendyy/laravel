@@ -27,7 +27,7 @@ class ChangeAdminPasswordController extends Controller
      */
     public function index()
     {
-        return view('admin.adminChangePassword');
+        return view('admin.pages.adminChangePassword');
     } 
     
     /**

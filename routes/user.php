@@ -6,26 +6,17 @@ Route::get('/', function () {
 });
 
 
-
-// use App\Mail\MailtrapExample;
-// use Illuminate\Support\Facades\Mail;
-
-// Route::get('/testmails', function () {
-
-//     $data = ['message' => 'This is a test!'];
-
-//     Mail::to('osamahmuhammed@gmail.com')->send(new MailtrapExample($data));
-
-
-// });
-
-
-
 Auth::routes();
 Route::get('/home', 'HomeController@index');
-
 Route::get('/home', 'User\UserCounterController@index')->name('count.users');
 
 
+Route::get('/home', 'User\UserController@index');
+Route::get('/users/{user}/edit', 'User\UserController@edit');
+Route::put('/users/{user}', 'User\UserController@update');
+
+Route::post('/upload', 'User\UserController@uploadImage')->name('upload.picture');
+
 Route::get('change-password', 'User\ChangeUserPasswordController@index');
 Route::post('change-password', 'User\ChangeUserPasswordController@store')->name('change.userpassword');
+
