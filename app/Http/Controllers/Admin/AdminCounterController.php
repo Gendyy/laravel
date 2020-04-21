@@ -10,8 +10,6 @@ class AdminCounterController extends Controller
 {
     public function index()
     {
-
-        
         $adminsData = Admin::all()->count();
         return view('admin.layouts.adminHome', compact('adminsData'));
 
