@@ -318,7 +318,7 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="{{asset('/storage/images/'.Auth::user()->image)}}" alt="avatar" alt="User profile picture">
+            {{-- <img class="profile-user-img img-responsive img-circle" src="{{asset('/storage/images/'.Auth::user()->image)}}" alt="avatar" alt="User profile picture"> --}}
               @foreach ($users as $user)
               @endforeach
             <h3 class="profile-username text-center">{{$user->firstname . " " . $user->lastname}}</h3>

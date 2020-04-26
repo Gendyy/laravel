@@ -11,39 +11,39 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Auth;
 
-class AdminLoginController extends Controller
+class AgencyLoginController extends Controller
 {
 
     use AuthenticatesUsers;
 
 
-    protected $redirectTo = RouteServiceProvider::ADMINHOME;
+    protected $redirectTo = RouteServiceProvider::AGENCYHOME;
 
 
     public function __construct()
     {
-      $this->middleware('guest:admin')->except('logout');
+      $this->middleware('guest:agency')->except('logout');
     }
 
     public function showLoginForm()
     {
-      return view('auth.adminlogin');
+      return view('auth.agencyLogin');
     }
 
     public function login(Request $request)
     {
       // Validate the form data
+      // dd($request);
       $this->validate($request, [
         'email'   => 'required|email',
         'password' => 'required|min:6'
       ]);
 
+      
       // Attempt to log the user in
-      if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+      if (Auth::guard('agency')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
         // if successful, then redirect to their intended location
-        //return dd($request);
       }
-      // dd(Auth::guard('admin')->attempt());
 
       // if unsuccessful, then redirect back to the login with the form data
       return redirect()->back()->withInput($request->only('email', 'remember'));
@@ -52,8 +52,8 @@ class AdminLoginController extends Controller
     public function logout()
     {
       
-        Auth::guard('admin')->logout();
-        return redirect()->to('admin/login');
+        Auth::guard('agency')->logout();
+        return redirect()->to('agency/login');
 
 
     }

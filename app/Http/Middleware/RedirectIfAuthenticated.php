@@ -25,6 +25,12 @@ class RedirectIfAuthenticated
           }
           break;
 
+          case 'agency':
+            if (Auth::guard($guard)->check()) {
+              return redirect(RouteServiceProvider::AGENCYHOME);
+            }
+          break;
+
         default:
           if (Auth::guard($guard)->check()) {
               return redirect(RouteServiceProvider::USERHOME);

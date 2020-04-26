@@ -25,6 +25,7 @@ class RouteServiceProvider extends ServiceProvider
 
     public const USERHOME = 'user/home';
     public const ADMINHOME = 'admin/home';
+    public const AGENCYHOME = 'agency/home';
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -51,6 +52,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapUserRoutes();
 
         $this->mapAdminRoutes();
+        $this->mapAgencyRoutes();
     }
 
     /**
@@ -96,5 +98,13 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/admin.php'));
+    }
+
+    protected function mapAgencyRoutes()
+    {
+        Route::prefix('agency')
+             ->middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/agency.php'));
     }
 }

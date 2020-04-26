@@ -54,6 +54,10 @@ return [
             'driver' => 'token',
             'provider' => 'admins',
         ],
+        'agency' => [
+            'driver' => 'session',
+            'provider' => 'agencies',
+        ],
     ],
 
     /*
@@ -82,6 +86,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
+        'agencies' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Agency::class,
+        ],
     ],
 
     /*
@@ -108,6 +116,11 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'agencies' => [
+            'provider' => 'agencies',
             'table' => 'password_resets',
             'expire' => 60,
         ],
