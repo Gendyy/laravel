@@ -5,10 +5,21 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Offer;
+use App\Services\OfferServices;
 Use Auth;
 
 class OfferController extends Controller
 {
+
+    public $offer;
+
+
+    public function __construct()
+    {
+        $this->offer = new OfferServices();
+
+    }
+
     public function index() {
 
         $offers  = Offer::with('agency')->get();
@@ -34,56 +45,58 @@ class OfferController extends Controller
 
     public function store(Request $request) {
 
+        $this->offer->store($request);
+        return redirect('admin/offers');
+
         // dd('hello from store');
 
-        $offer = new Offer; // createing a new object
+        // $offer = new Offer; // createing a new object
 
-        // matching the request
-        $offer->name = $request-> name;
-        $offer->start_date = $request-> start_date;
-        $offer->end_date = $request-> end_date;
-        $offer->rooms_num = $request-> rooms_num;
-        $offer->agency_price = $request-> agency_price;
-        $offer->user_price = $request-> user_price;
-        $offer->agency_id = $request-> agency_id;
+        // // matching the request
+        // $offer->name = $request-> name;
+        // $offer->start_date = $request-> start_date;
+        // $offer->end_date = $request-> end_date;
+        // $offer->rooms_num = $request-> rooms_num;
+        // $offer->agency_price = $request-> agency_price;
+        // $offer->user_price = $request-> user_price;
+        // $offer->agency_id = $request-> agency_id;
 
 
-        //saving the process
-        $offer->save();
+        // //saving the process
+        // $offer->save();
         
 
-        $offer->categories()->sync($request['category_id']);
+        // $offer->categories()->sync($request['category_id']);
 
-        $offer->details()->create([
+        // $offer->details()->create([
             
-            'from' => $request-> from,
-            'to' => $request-> to,
-            'dep_time' => $request-> dep_time,
-            'arr_time' => $request-> arr_time,
-            'trip_num' => $request-> trip_num,
-            'transportation' => $request-> transportation,
+        //     'from' => $request-> from,
+        //     'to' => $request-> to,
+        //     'dep_time' => $request-> dep_time,
+        //     'arr_time' => $request-> arr_time,
+        //     'trip_num' => $request-> trip_num,
+        //     'transportation' => $request-> transportation,
             
-            ]);
+        //     ]);
 
-        $offer->photos()->create([
+        // $offer->photos()->create([
 
-            'photo' => $request-> photo,
+        //     'photo' => $request-> photo,
 
-        ]);
+        // ]);
         
-        if ($request->hasFile('photo')) {
+        // if ($request->hasFile('photo')) {
 
-            $filename = $request->photo->getClientOriginalName();
-            $request->photo->storeAs('public/images/photo', $filename);
+        //     $filename = $request->photo->getClientOriginalName();
+        //     $request->photo->storeAs('public/images/photo', $filename);
             
-            Auth::gurad('agency')->update(['photo' => $filename]);
+        //     Auth::gurad('agency')->update(['photo' => $filename]);
 
-        }
+        // }
 
 
-        $offer->save();
+        // $offer->save();
 
-        return redirect('admin/offers');
 
     }
 
@@ -104,39 +117,7 @@ class OfferController extends Controller
 
     Public function update(Request $request) {
 
-        $offer_id = $request-> offer;
-        $offer = Offer::findOrFail($offer_id);
-
-        $offer->name = $request-> name;
-        $offer->start_date = $request-> start_date;
-        $offer->end_date = $request-> end_date;
-        $offer->rooms_num = $request-> rooms_num;
-        $offer->agency_price = $request-> agency_price;
-        $offer->user_price = $request-> user_price;
-
-        $offer->save();
-
-        $offer->details()->update([
-            
-            'from' => $request-> from,
-            'to' => $request-> to,
-            'dep_time' => $request-> dep_time,
-            'arr_time' => $request-> arr_time,
-            'trip_num' => $request-> trip_num,
-            'transportation' => $request-> transportation,
-            
-        ]);
-
-        $offer->save();
-        
-        $offer->photos()->update([
-
-            'photo' => $request-> photo,
-
-        ]);
-
-
-        $offer->save();
+        $this->offer->update($request);
         return redirect('admin/offers');
 
 
