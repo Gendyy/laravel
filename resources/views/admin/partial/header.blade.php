@@ -50,6 +50,7 @@
   });
 
   $(document).ready(function(){
+
     $('.js-switch').change(function () {
         let status = $(this).prop('checked') === true ? 1 : 0;
         let userId = $(this).data('id');
@@ -63,5 +64,20 @@
             }
         });
     });
+
+    $('.change').click(function () {
+        let status = 1;
+        let contactId = $(this).data('id');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '{{ route('contacts.update.status') }}',
+            data: {'status': status, 'contact_id': contactId},
+            success: function (data) {
+                console.log(data.message);
+            }
+        });
+    });
+    
 });
 </script>

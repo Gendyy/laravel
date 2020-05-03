@@ -24,6 +24,10 @@
   </div>
 
   <div class="col-sx-12">
+    <a href="{{url('/admin/contacts')}}">List Contact Messages</a>
+  </div>
+
+  <div class="col-sx-12">
     <a class="dropdown-item" href="{{ route('logout') }}"
        onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">

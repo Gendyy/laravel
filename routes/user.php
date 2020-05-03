@@ -17,6 +17,9 @@ Route::put('/users/{user}', 'User\UserController@update');
 
 Route::post('/upload', 'User\UserController@uploadImage')->name('upload.picture');
 
+Route::get('/contact', 'User\ContactUsController@create');
+Route::post('/contact', 'User\ContactUsController@store')->name('contact.store');
+
 Route::get('change-password', 'User\ChangeUserPasswordController@index');
 Route::post('change-password', 'User\ChangeUserPasswordController@store')->name('change.userpassword');
 

@@ -377,7 +377,22 @@
                     </div>
                 </div>
             </div>
+
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <div class="card">
+                  <a href="/user/contact">Contact-Us</a>
+                  </div>
+                </div>
+              </div>
             </div>
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
+
             <!-- /.box-body -->
           </div>
           <!-- /.box -->

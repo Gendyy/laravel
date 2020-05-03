@@ -31,7 +31,9 @@ Route::middleware('admin')->group( function () {
     Route::resource('offers', 'Admin\OfferController');
     Route::post('/upload', 'Admin\AgencyController@uploadImage')->name('upload.photo');
     Route::post('/upload', 'Admin\OfferController@uploadImage')->name('upload.photo');
-
+    Route::get('/contacts', 'Admin\ContactUsController@index'); 
+    Route::get('/contacts/{contact}', 'Admin\ContactUsController@show');
+    Route::get('/contacts/status/update', 'Admin\ContactUsController@updateStatus')->name('contacts.update.status');
 
 
 });
