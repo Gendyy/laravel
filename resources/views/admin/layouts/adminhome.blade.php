@@ -16,6 +16,10 @@
   </div>
 
   <div class="col-sx-12">
+    <a href="{{url('/admin/subcategories')}}">List Subcategories</a>
+  </div>
+
+  <div class="col-sx-12">
     <a href="{{url('/admin/agencies')}}">List Agencies</a>
   </div>
 

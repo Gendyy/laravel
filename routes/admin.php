@@ -27,6 +27,7 @@ Route::middleware('admin')->group( function () {
 Route::middleware('admin')->group( function () {
 
     Route::resource('categories', 'Admin\CategoryController');
+    Route::resource('subcategories', 'Admin\SubcategoryController');
     Route::resource('agencies', 'Admin\AgencyController');
     Route::resource('offers', 'Admin\OfferController');
     Route::post('/upload', 'Admin\AgencyController@uploadImage')->name('upload.photo');
