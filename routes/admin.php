@@ -18,7 +18,7 @@ Route::middleware('admin')->group( function () {
     Route::get('/users/{user}', 'Admin\UserMangeController@show');
     Route::get('/users/{user}/edit', 'Admin\UserMangeController@edit')->name('admin.users.edit');
     Route::put('/users/{user}', 'Admin\UserMangeController@update');
-    Route::delete('/users/{user}', 'Admin\UserMangeController@destroy');
+    Route::delete('/users/{user}', 'Admin\UserMangeController@destroy')->name('admin.users.delete');
     Route::get('/users/status/update', 'Admin\UserMangeController@updateStatus')->name('users.update.status');
 
 });

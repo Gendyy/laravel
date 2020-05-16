@@ -6,6 +6,7 @@
   <title>Admin Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   
@@ -78,6 +79,24 @@
             }
         });
     });
-    
+
+    $('.delete').on("click", function () {
+        var route = $(this).attr("data-route");
+        var token = $(this).data("token");
+
+        $.ajax({
+            type: "DELETE",
+            url: route,
+            data: {
+                "_method": 'DELETE',
+                "_token": token,
+            },
+            success: function (data) {
+                $("#"+data.id).remove();
+            }
+        });
+    });
+
+
 });
 </script>

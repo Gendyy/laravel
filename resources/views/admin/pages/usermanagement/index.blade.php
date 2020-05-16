@@ -29,8 +29,8 @@
           </tr>
           @foreach ($users as $user)
 
-          <tr>
-            <td>{{$user->id}}</td>
+          <tr id="{{$user->id}}">
+          <td>{{$user->id}}</td>
             <td>{{$user->firstname . " " . $user->lastname}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->birth_date}}</td>
@@ -41,11 +41,7 @@
             <td><a href='/admin/users/{{ $user->id }}/edit'>E</a></td>
             <td><a href='/admin/users/{{$user->id}}'>R</a></td>
           <td>
-            <form action="/admin/users/{{ $user->id }}" method="POST">
-              @method('DELETE') 
-              @csrf 
-              <input type="submit" value='D'> 
-            </form>
+            <button class="btn btn-danger delete" data-token="{{ csrf_token() }}" data-route="{{ url('/admin/users/'.$user->id)}}">Delete</button>
           </td>            
           </tr>
           @endforeach

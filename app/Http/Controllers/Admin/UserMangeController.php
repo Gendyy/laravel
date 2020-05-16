@@ -86,14 +86,15 @@ class UserMangeController extends Controller
 
     }
 
-    public function destroy(Request $request) {
+    public function destroy($id) {
 
-        $user_id = $request-> user;
-        $user = User::findOrFail($user_id);
-        $user->delete();
-        $users = User::all();
-        return redirect()->back();
-        return view('admin.pages.usermanagement.index', compact('users'));
+        User::findOrFail($id)->delete();
+        // $user->delete();
+        // $users = User::all();
+        // return redirect()->back();
+        // return view('admin.pages.usermanagement.index', compact('users'));
+        return response()->json(['success' => "deleted success", "id"=>$id]);
+
         
     }
 
